@@ -1,0 +1,52 @@
+﻿
+@using Model
+@model IEnumerable<Plant>
+<section id="how-it-works-section" class="neutral p-top p-bottom center">
+    @foreach (var item in Model)
+    {
+
+        <div class="ft-recipe">
+            <div class="ft-recipe__thumb">
+
+                <h3> @item.Name</h3>
+                @{
+                    if (@item.Photo != null)
+                    {
+                        var base64 = Convert.ToBase64String(@item.Photo);
+                        var imagesrc = string.Format("data:image/jpeg;base64,{0}", base64);
+
+                        <img src="@imagesrc" alt=""  />
+                    }
+                    else
+                    {
+
+
+                        <img src="~/Resource/thuan-pham-1Kj0OZiwLN8-unsplash.jpg" alt=""  />
+
+                    }
+                }
+            </div>
+            <div class="ft-recipe__content">
+                <header class="content__header">
+                    <div class="row-wrapper">
+
+                        <div class="user-rating"></div>
+                    </div>
+                    <ul class="recipe-details">
+                        <li class="recipe-details-item "><span class="value">@item.Kind</span><span class="title">Kind</span></li>
+                        <li class="recipe-details-item "><span class="value">@item.NumberOfSorts</span><span class="title">Number of sorts</span></li>
+
+                    </ul>
+                </header>
+                <p class="description">
+                    @item.Description
+                </p>
+                <footer class="content__footer">
+                    <a href="@Url.Action("PlantInfo", "Plant", new { Id = item.PlantId })">
+                        @Resources.Content.ViewMore
+                    </a>
+                </footer>
+            </div>
+        </div>
+    }
+</section>

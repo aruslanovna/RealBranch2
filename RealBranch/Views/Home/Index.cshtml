@@ -1,0 +1,153 @@
+﻿
+
+<script src="https://kit.fontawesome.com/9ecd1794ec.js" crossorigin="anonymous"></script>
+<section class="base nobg center">
+
+
+
+
+    <div class="container container2">
+        <header>
+            <hgroup>
+                <h1 class="h-monster h-thin highlight">@Resources.Content.MainDesc</h1>
+                <h2 class="h-small h-thin highlight m-bottom">@Resources.Content.ToDo</h2>
+            </hgroup>
+        </header>
+        <div class="clearfix gsection group">
+            <div class="col span_1_of_4 margin_1_of_4">
+                <a href="#" class="btn-big btn-transparent btn-flex btn-hollow cursor-pointer nowrap">@Resources.Content.Mobile</a>
+            </div>
+            <div class="col span_1_of_4">
+
+                <a href="@Url.Action("GetAllArticles", "Article" )"  class="btn-big btn-transparent btn-solid btn-flex cursor-pointer">@Resources.Content.News</a>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+    <!-- close container -->
+
+
+</section>
+<section class="base  nobg2 center">
+    <div class="container container2">
+
+
+        <!-- Begin iOS -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container manual-flip">
+                <div class="card">
+                    <div class="front">
+                        <div class="cover">
+
+                            <img src="~/Resource/tree.jpg" />
+                        </div>
+                        <div class="branded">
+
+                            <span class="glyphicon glyphicon-tree-conifer">   </span>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 class="use-for faint">@Resources.Content.Tree</h3>
+                                <button type="button" class="  btn-block btn-download">
+                                    <a href="@Url.Action("GetPlantsBySpeciesId", "Plant", new { Id =1 })" class="elements">
+                                        <span>@Resources.Content.Viewarticles</span>
+                                    </a>
+                                </button>
+
+
+
+                            </div>
+                            <div class="footer">
+                                <button class="btn btn-flip btn-qr">
+                                    <i class="fa fa-mail-forward"></i><a style="color:#141313" href="https://en.wikipedia.org/wiki/Tree"> @Resources.Content.Vikipedia</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End iOS -->
+        <!-- Begin Android -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container manual-flip">
+                <div class="card">
+                    <div class="front">
+                        <div class="cover">
+
+
+                            <img src="~/Resource/bush2.jpg" />
+                        </div>
+                        <div class="branded">
+                            <span class="glyphicon glyphicon-tree-deciduous">   </span>
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 class="use-for faint">@Resources.Content.Branch</h3>
+                                <button type="button" class="  btn-block btn-download">
+                                    <a href="@Url.Action("GetPlantsBySpeciesId", "Plant", new { Id = 2})" class="elements">
+                                        <span>@Resources.Content.Viewarticles </span>
+                                    </a>
+                                </button>
+                            </div>
+                            <div class="footer">
+                                <button class="btn btn-flip btn-qr">
+                                    <i class="fa fa-mail-forward"></i> <a style="color:#141313" href="https://en.wikipedia.org/wiki/Branch">@Resources.Content.Vikipedia</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>
+        <!-- End Android -->
+        <!-- Begin Web -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card-container manual-flip">
+                <div class="card">
+                    <div class="front">
+                        <div class="cover">
+
+
+                            <img src="~/Resource/grass2.jpg" />
+                        </div>
+                        <div class="branded">
+                            <span class="glyphicon glyphicon-grain">   </span>
+
+                        </div>
+                        <div class="content">
+                            <div class="main">
+                                <h3 class="use-for faint">@Resources.Content.Herbal</h3>
+                                <button type="button" class=" btn-block btn-download">
+                                    <a href="@Url.Action("GetPlantsBySpeciesId", "Plant", new { Id = 3 })" class="elements">
+                                        <span>@Resources.Content.Viewarticles</span>
+                                    </a>
+                                </button>
+                            </div>
+                            <div class="footer">
+                                <button class="btn btn-flip btn-qr" onclick="rotateCard(this)">
+                                    <i class="fa fa-mail-forward"></i><a style="color:#141313" href="https://en.wikipedia.org/wiki/Herbal">@Resources.Content.Vikipedia</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end front panel -->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- End Web -->
+
+
+    </div>
+</section>
+
+

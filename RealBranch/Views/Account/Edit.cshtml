@@ -1,0 +1,180 @@
+﻿
+
+
+@using System.Linq
+@using Model
+@model AppUser
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+<style>
+
+
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 1.6em;
+        font-weight: 300;
+        color: #555;
+    }
+
+    p {
+        margin-bottom: 2em;
+    }
+
+    header {
+        border-bottom: solid 1px #e0e0e0;
+        margin: 0 0 20px 0;
+    }
+
+    .pageTitle,
+    .pageSubTitle {
+        font-family: 'Titillium', sans-serif;
+        text-transform: uppercase;
+        color: #333;
+    }
+
+    .pageTitle {
+        color: #FF7600;
+    }
+
+    .pageTitle {
+        font-size: 2em;
+        font-weight: 700;
+        line-height: 2em;
+    }
+
+    .pageSubTitle {
+        margin-bottom: 1em;
+        font-size: 1.4em;
+        font-weight: 300;
+        float:left;
+    }
+
+    .background {
+        background: url("http://img.talkandroid.com/uploads/2013/03/htc-sense-5-wallpaper-3.jpg") repeat;
+        background-size: 100% auto;
+        position: fixed;
+        width: 100%;
+        height: 300%;
+        top: 0;
+        left: 0;
+        z-index: -1
+    }
+
+    .wrapper {
+        width: 520px;
+        padding: 40px;
+        margin: 20px auto;
+        background: #fff;
+        box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .slogan {
+        position: fixed;
+        display: block;
+        top: 700px;
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+        background: #222;
+    }
+
+    .sloganTitle {
+        font-size: 70px;
+        font-weight: 700;
+        line-height: 80px;
+        color: #fff;
+        text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .button {
+        background-color: #8cb375;
+        color: aliceblue;
+        margin-right: 2em;
+    }
+
+        .button:hover {
+            background-color: #80b06a;
+            color: aliceblue
+        }
+        .circle{
+            height:10em;
+            width:10em;
+            position:center;
+        }
+</style>
+
+
+
+
+
+<article class="wrapper">
+    @using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+       
+
+    <header>
+
+        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
+        <h1 class="pageTitle">@Resources.Content.PersInfo</h1>
+        @{
+            if (@Model.Photo != null)
+            {
+                var base64 = Convert.ToBase64String(@Model.Photo);
+                var imagesrc = string.Format("data:image/jpeg;base64,{0}", base64);
+
+                <img src="@imagesrc" alt="" class=" circle" />
+            }
+            else
+            {
+
+                <img src="~/Resource/600x600.png" alt="" class="circle " height="5em" />
+
+            }
+        }
+        <input type="file" name="ImageData" id="ImageData" style="margin:1.5em" />
+        @Html.ValidationSummary(false)
+        <h2 class="pageSubTitle">@Resources.Content.Name</h2>  @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+        <h2 class="pageSubTitle">@Resources.Content.Email</h2>   @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        <h2 class="pageSubTitle">@Resources.Content.Phone</h2>   @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+        <h2 class="pageSubTitle">@Resources.Content.Status</h2>    @Html.TextBoxFor(x => x.Status, new { @class = "form-control" })
+        <h2 class="pageSubTitle">@Resources.Content.Position</h2>   @Html.TextBoxFor(x => x.Position, new { @class = "form-control" })
+        <h2 class="pageSubTitle">@Resources.Content.Experience</h2>   @Html.TextBoxFor(x => x.Experience, new { @class = "form-control" })
+        <h2 class="pageSubTitle">@Resources.Content.SomethingElse</h2>   @Html.TextBoxFor(x => x.Info, new { @class = "form-control" })
+        <h2 class="pageSubTitle">@Resources.Content.Password</h2>     <input name="password" type="password" class="form-control" />
+
+
+    </header>
+        <section>
+            <button class="button button-block btn" type="submit">@Resources.Content.Save</button>
+        </section>
+    }
+
+    @using (Html.BeginForm("UserProfile", "Account", FormMethod.Post, new { style = "margin-top:12px" }))
+    {
+
+        <button class="button  button-block btn" type="submit">
+            @Resources.Content.Back  <img src="https://img.icons8.com/plasticine/30/000000/return.png">
+        </button>
+    }
+
+
+
+    <img src="~/Resource/pawel-czerwinski-lWBZ01XRRoI-unsplash.jpg" height="310em" />
+
+
+
+
+
+</article>
+            
+
+
+

@@ -1,0 +1,205 @@
+﻿
+@using Model
+@using System.Linq
+@model IEnumerable<AppUser>
+
+
+<style type="text/css">
+
+  
+.snip1336 {
+height: 30em;
+    font-family: 'Roboto', Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    position: inherit;
+    margin: 5em 2em 0 7em;
+    min-width: 230px;
+    max-width: 315px;
+    width: 100%;
+    color: #ffffff;
+    text-align: left;
+    line-height: 1.4em;
+    background-color: #676565;
+    float: left;
+}
+.snip1336 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.snip1336 img {
+  max-width: 100%;
+  vertical-align: top;
+  opacity: 0.85;
+}
+.snip1336 figcaption {
+  width: 100%;
+  
+  padding: 25px;
+  position: relative;
+}
+.snip1336 figcaption:before {
+  position: absolute;
+  content: '';
+  bottom: 100%;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 55px 0 0 400px;
+ border-color: transparent transparent transparent #b8b0b0;
+}
+.snip1336 figcaption a {
+  padding: 5px;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  margin: 10px 0;
+  display: inline-block;
+  opacity: 0.65;
+  width: 47%;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.snip1336 figcaption a:hover {
+  opacity: 1;
+}
+.snip1336 .profile {
+  border-radius: 50%;
+  position: absolute;
+  bottom: 100%;
+  left: 25px;
+  z-index: 1;
+  max-width: 90px;
+  opacity: 1;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+.snip1336 .follow {
+  margin-right: 4%;
+  border-color: #2980b9;
+  color: #2980b9;
+}
+.snip1336 h2 {
+  margin: 0 0 5px;
+  font-weight: 300;
+}
+.snip1336 h2 span {
+  display: block;
+  font-size: 0.5em;
+ 
+}
+.snip1336 p {
+  margin: 0 0 10px;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+</style>
+
+
+<section class="nobg2">
+    <div >
+   
+   
+    @foreach (AppUser user in Model)
+    {
+
+        <figure class="snip1336">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg" alt="sample87" />
+            <figcaption>
+
+                @{
+                    if (@user.Photo != null)
+                    {
+                        var base64 = Convert.ToBase64String(@user.Photo);
+                        var imagesrc = string.Format("data:image/jpeg;base64,{0}", base64);
+
+                        <img src="@imagesrc" alt="" class="profile" />
+                    }
+                    else
+                    {
+
+
+                        <img src="~/Resource/thuan-pham-1Kj0OZiwLN8-unsplash.jpg" alt="" class="profile" />
+
+                    }
+                }                         <h2>@user.UserName<span>@user.Position</span></h2>
+                <p>@user.Info </p>
+
+                <a href="@Url.Action("AnotherOneUserProfile", "Account", new { Id = user.Id })" class="info">
+                    @Resources.Content.ViewMore
+                </a>
+            </figcaption>
+        </figure>
+
+
+
+    }
+</div>
+</section>
+  
+
+    @*<div class="col s12 m6 l4">
+        <div id="profile-card" class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="http://demo.geekslabs.com/materialize/v2.1/layout03/images/user-bg.jpg" alt="user background">
+            </div>
+            <div class="card-content">
+
+                @{
+                    if (@ViewBag.Photo != null)
+                    {
+                        var base64 = Convert.ToBase64String(@ViewBag.Photo);
+                        var imagesrc = string.Format("data:image/jpeg;base64,{0}", base64);
+
+                        <img src="@imagesrc" alt="" class="circle responsive-img activator card-profile-image" />
+                    }
+                    else
+                    {
+
+
+                        <img src="~/Resource/thuan-pham-1Kj0OZiwLN8-unsplash.jpg" alt="" class="circle responsive-img activator card-profile-image" />
+
+                    }
+                }
+
+                @*  <img src=@Model.Photo alt="" class="circle responsive-img activator card-profile-image">*@
+    @*<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
+                            <i class="mdi-action-account-circle"></i>
+                        </a>
+
+                        <span class="card-title activator grey-text text-darken-4">@user.UserName</span>
+
+                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i>@user.Email</p>
+
+        </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">@user.UserName <i class="mdi-navigation-close right"></i></span>
+                                <p>Here is some more information about this card.</p>
+
+                                <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> @user.Status</p>
+                                <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> @user.PhoneNumber</p>
+                                <p><i class="mdi-communication-email cyan-text text-darken-2"></i>@user.Email</p>
+                                <p><i class="mdi-device-airplanemode-on cyan-text text-darken-2"></i> @user.Info</p>
+                                <p><i class="mdi-social-cake cyan-text text-darken-2"></i>@user.Experience</p>
+                                <p><i class="mdi-device-airplanemode-on cyan-text text-darken-2"></i> @user.WorkPlace</p>
+                                <p><i class="mdi-device-airplanemode-on cyan-text text-darken-2"></i> @user.Position</p>
+                            </div>
+
+                        </div>
+
+                        <footer class="content__footer">
+                            <a href="@Url.Action("AnotherOneUserProfile", "Account", new { Id = user.Id })">
+                                @Resources.Content.ViewMore
+                            </a>
+                        </footer>
+
+
+
+                    </div>*@
