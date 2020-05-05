@@ -1,0 +1,59 @@
+﻿
+@using Model
+@model IEnumerable<Article>
+<section id="how-it-works-section" class="neutral p-top p-bottom center">
+    @foreach (var item in Model)
+    {
+
+        <div class="ft-recipe">
+            <div class="ft-recipe__thumb">
+
+                <h3> @item.Name</h3>
+                @{
+                    if (@item.Photo != null)
+                    {
+                        var base64 = Convert.ToBase64String(@item.Photo);
+                        var imagesrc = string.Format("data:image/jpeg;base64,{0}", base64);
+
+                        <img src="@imagesrc" alt="" />
+                    }
+                    else
+                    {
+
+
+                        <img src="~/Resource/thuan-pham-1Kj0OZiwLN8-unsplash.jpg" alt="" />
+
+                    }
+                }
+            </div>
+            <div class="ft-recipe__content">
+                <header class="content__header">
+                    <div class="row-wrapper">
+
+                        <div class="user-rating"></div>
+                    </div>
+                    <ul class="recipe-details">
+                        <li class="recipe-details-item "><span class="value">@item.Name</span><span class="title"> @Resources.Content.Title</span></li>
+
+
+                    </ul>
+                </header>
+                <p class="description">
+                    @item.Briefly
+                </p>
+                <footer class="content__footer">
+                    <a href="@Url.Action("GetArticle", "Article", new { id =item.ArticleId})" class="elements">
+                        @Resources.Content.ViewMore
+                    </a>
+                </footer>
+                <footer class="content__footer content__footer2">
+                    <a href="@Url.Action("AddArticle", "Article", new { articleId =item.ArticleId})" style="background-color:transparent; color:#262525; font-size:1em">
+                        @Resources.Content.AddArticle
+                    </a>
+
+                </footer>
+            </div>
+        </div>
+    }
+</section>
+

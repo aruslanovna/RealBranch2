@@ -1,0 +1,205 @@
+﻿@using Model.LINQmodels
+@using System.Linq
+@model  IEnumerable<UserProfileModel>
+
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 1.6em;
+        font-weight: 300;
+        color: #555;
+    }
+
+    p {
+        margin-bottom: 2em;
+    }
+
+    header {
+        border-bottom: solid 1px #e0e0e0;
+        margin: 0 0 20px 0;
+    }
+
+    .pageTitle,
+    .pageSubTitle {
+        font-family: 'Titillium', sans-serif;
+        text-transform: uppercase;
+        color: #333;
+    }
+
+    .pageTitle {
+        color: #FF7600;
+    }
+
+    .pageTitle {
+        font-size: 2em;
+        font-weight: 700;
+        line-height: 2em;
+    }
+
+    .pageSubTitle {
+        margin-bottom: 1em;
+        font-size: 1.4em;
+        font-weight: 300;
+    }
+
+    .background {
+        background: url("http://img.talkandroid.com/uploads/2013/03/htc-sense-5-wallpaper-3.jpg") repeat;
+        background-size: 100% auto;
+        position: fixed;
+        width: 100%;
+        height: 300%;
+        top: 0;
+        left: 0;
+        z-index: -1
+    }
+
+    .wrapper {
+        width: 520px;
+        padding: 40px;
+        margin: 20px auto;
+        background: #fff;
+        box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .slogan {
+        position: fixed;
+        display: block;
+        top: 700px;
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+        background: #222;
+    }
+
+    .sloganTitle {
+        font-size: 70px;
+        font-weight: 700;
+        line-height: 80px;
+        color: #fff;
+        text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .button {
+        background-color: #68a369;
+        color: aliceblue;
+    }
+
+    .comment-box {
+        position: center;
+    }
+</style>
+@foreach (var item in Model)
+{
+    <article class="wrapper">
+
+        <header>
+            <h1 class="pageTitle">@item.ArticleName</h1>
+            <h2 class="pageSubTitle">@item.Briefly</h2>
+        </header>
+        <section>
+            <p>@item.Description</p>
+            @{
+                if (@item.Photo != null)
+                {
+                    var base64 = Convert.ToBase64String(@item.Photo);
+                    var imagesrc = string.Format("data:image/jpeg;base64,{0}", base64);
+
+                    <img src="@imagesrc" alt="" height="330em" />
+                }
+                else
+                {
+
+
+                    <img src="~/Resource/thuan-pham-1Kj0OZiwLN8-unsplash.jpg" alt="" height="330em" />
+
+                }
+            }
+        </section>
+
+
+    </article>
+
+    <div class="container">
+        <div class="comments-container">
+
+            <h1> @Resources.Content.Comments</h1>
+
+            <ul id="comments-list" class="comments-list">
+
+                <li>
+                    @using (Html.BeginForm("AddComment", "Article", new { articleId = item.ArticleId }))
+                    {
+                        <div class="comment-main-level">
+                            <!-- Avatar -->
+                            <div class="comment-avatar">
+                                @{
+                                    if (@ViewBag.Photo != null)
+                                    {
+                                        var base64 = Convert.ToBase64String(@ViewBag.Photo);
+                                        var imagesrc = string.Format("data:image/jpeg;base64,{0}", base64);
+
+                                        <img src="@imagesrc" style=" background-size: cover;border-radius: 50%; height: 42px; margin-right: .9rem;position: relative;top: 8px; width: 42px;" />
+                                    }
+                                    else
+                                    {
+
+
+                                        <img src="~/Resource/thuan-pham-1Kj0OZiwLN8-unsplash.jpg" style=" background-size: cover;border-radius: 50%;height: 42px; margin-right: .9rem;  position: relative;  top: 8px;  width: 42px;" />
+
+                                    }
+                                }
+                            </div> <!-- Contenedor del Comentario -->
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name">@ViewBag.Name</h6>
+
+                                    <i class="fa fa-reply"></i>
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputlg">Your comment</label>
+                                    <input class="form-control input-lg" id="inputlg" type="text" name="Content">
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="button button-block btn" type="submit">@Resources.Content.Post </button>
+
+
+                    }
+                </li>
+                @if (@item.Comment.Count != 0)
+                {
+                    <li>
+                        @for (int i = 0; i < @item.Comment.Count; i++)
+                        {
+                            <div class="comment-main-level">
+                                <!-- Avatar -->
+                                <div class="comment-avatar"><img src="data:image/jpeg;base64,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" alt=""></div>
+                                <!-- Contenedor del Comentario -->
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="#">@*item.CommentedUserId[i]*@ Nastya</a></h6>
+                                        <span>@item.CommentDate[i]</span>
+                                        <i class="fa fa-reply"></i>
+                                        <i class="fa fa-heart"></i>
+                                    </div>
+                                    <div class="comment-content">
+
+                                        @item.Comment[i];
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </li>
+                }
+            </ul>
+
+        </div>
+    </div>
+}
+

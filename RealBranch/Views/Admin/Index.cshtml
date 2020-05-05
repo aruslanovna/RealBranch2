@@ -1,0 +1,56 @@
+﻿@using Model
+@model IEnumerable<AppUser>
+@using RealBranch.Controllers
+@{
+    ViewBag.Title = "ASP.NET Identity";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        @Resources.Content.Accounts
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>@Resources.Content.Name</th>
+            <th>@Resources.Content.Email</th>
+            <th></th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="4" class="text-center">@Resources.Content.NoAccounts</td>
+            </tr>
+        }
+        else
+        {
+            foreach (AppUser user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Admin", new { id = user.Id }))
+                        {
+                            @Html.ActionLink(Resources.Content.Edit, "Edit", new { id = user.Id },
+                                new { @class = "btn btn-primary btn-xs", style = "float: left; margin-right: 10px" })
+                            <button class="btn btn-danger btn-xs" type="submit">@Resources.Content.Delete</button>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+@Html.ActionLink("Create", "Create", null, new { @class = "btn btn-primary" })
+
+<div class="panel-heading">
+    @Resources.Content.RoleManager
+</div>
+@Html.ActionLink( @Resources.Content.RoleManager, "Index", "RoleAdmin", null, new { @class = "btn btn-primary" })
+@Html.ActionLink(Resources.Content.UserInfo, "OtherAction", "Admin", new { @class = "btn btn-primary" })
+<div class="panel-heading">
+    @Resources.Content.DB
+</div>
+<a class="btn btn-success" href="@Url.Action("Back","Admin")">@Resources.Content.Start</a>

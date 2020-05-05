@@ -1,0 +1,613 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FlowerbedDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Flowers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="NameLatin" Type="varchar(max)" />
+          <Property Name="NameLatin2" Type="varchar(max)" />
+          <Property Name="FlowerFamily" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PlantationFlowers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlowerId" Type="int" />
+          <Property Name="PlantationId" Type="int" />
+          <Property Name="Amount" Type="int" />
+        </EntityType>
+        <EntityType Name="Plantations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Supplies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClosedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PlantationId" Type="int" Nullable="false" />
+          <Property Name="ScheduledDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="WarehouseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupplyFlowers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="FlowerId" Type="int" Nullable="false" />
+          <Property Name="SupplyId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FlowerbedDB.dbo.SupplyFlowersа' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="WarehouseFlowers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="FlowerId" Type="int" Nullable="false" />
+          <Property Name="WarehouseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Warehouses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PlantationFlowers_Flowers_FlowerId">
+          <End Role="Flowers" Type="Self.Flowers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlantationFlowers" Type="Self.PlantationFlowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flowers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlantationFlowers">
+              <PropertyRef Name="FlowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlantationFlowers_Plantations_PlantationId">
+          <End Role="Plantations" Type="Self.Plantations" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlantationFlowers" Type="Self.PlantationFlowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plantations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlantationFlowers">
+              <PropertyRef Name="PlantationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_plantationFlowers_ToTable">
+          <End Role="Flowers" Type="Self.Flowers" Multiplicity="0..1" />
+          <End Role="PlantationFlowers" Type="Self.PlantationFlowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flowers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlantationFlowers">
+              <PropertyRef Name="FlowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_plantationFlowers_ToTable_1">
+          <End Role="Plantations" Type="Self.Plantations" Multiplicity="0..1" />
+          <End Role="PlantationFlowers" Type="Self.PlantationFlowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plantations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlantationFlowers">
+              <PropertyRef Name="PlantationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplies_Plantations_PlantationId">
+          <End Role="Plantations" Type="Self.Plantations" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Supplies" Type="Self.Supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plantations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Supplies">
+              <PropertyRef Name="PlantationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplies_Warehouses_WarehouseId">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Supplies" Type="Self.Supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Supplies">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyFlowers_Flowers_FlowerId">
+          <End Role="Flowers" Type="Self.Flowers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SupplyFlowers" Type="Self.SupplyFlowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flowers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplyFlowers">
+              <PropertyRef Name="FlowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyFlowers_Supplies_SupplyId">
+          <End Role="Supplies" Type="Self.Supplies" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SupplyFlowers" Type="Self.SupplyFlowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplyFlowers">
+              <PropertyRef Name="SupplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseFlowers_Flowers_FlowerId">
+          <End Role="Flowers" Type="Self.Flowers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WarehouseFlowers" Type="Self.WarehouseFlowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flowers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WarehouseFlowers">
+              <PropertyRef Name="FlowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseFlowers_Warehouses_WarehouseId">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WarehouseFlowers" Type="Self.WarehouseFlowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WarehouseFlowers">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FlowerbedDBModelStoreContainer">
+          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flowers" EntityType="Self.Flowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlantationFlowers" EntityType="Self.PlantationFlowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plantations" EntityType="Self.Plantations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplies" EntityType="Self.Supplies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupplyFlowers" EntityType="Self.SupplyFlowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WarehouseFlowers" EntityType="Self.WarehouseFlowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouses" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PlantationFlowers_Flowers_FlowerId" Association="Self.FK_PlantationFlowers_Flowers_FlowerId">
+            <End Role="Flowers" EntitySet="Flowers" />
+            <End Role="PlantationFlowers" EntitySet="PlantationFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlantationFlowers_Plantations_PlantationId" Association="Self.FK_PlantationFlowers_Plantations_PlantationId">
+            <End Role="Plantations" EntitySet="Plantations" />
+            <End Role="PlantationFlowers" EntitySet="PlantationFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_plantationFlowers_ToTable" Association="Self.FK_plantationFlowers_ToTable">
+            <End Role="Flowers" EntitySet="Flowers" />
+            <End Role="PlantationFlowers" EntitySet="PlantationFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_plantationFlowers_ToTable_1" Association="Self.FK_plantationFlowers_ToTable_1">
+            <End Role="Plantations" EntitySet="Plantations" />
+            <End Role="PlantationFlowers" EntitySet="PlantationFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplies_Plantations_PlantationId" Association="Self.FK_Supplies_Plantations_PlantationId">
+            <End Role="Plantations" EntitySet="Plantations" />
+            <End Role="Supplies" EntitySet="Supplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplies_Warehouses_WarehouseId" Association="Self.FK_Supplies_Warehouses_WarehouseId">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="Supplies" EntitySet="Supplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyFlowers_Flowers_FlowerId" Association="Self.FK_SupplyFlowers_Flowers_FlowerId">
+            <End Role="Flowers" EntitySet="Flowers" />
+            <End Role="SupplyFlowers" EntitySet="SupplyFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyFlowers_Supplies_SupplyId" Association="Self.FK_SupplyFlowers_Supplies_SupplyId">
+            <End Role="Supplies" EntitySet="Supplies" />
+            <End Role="SupplyFlowers" EntitySet="SupplyFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseFlowers_Flowers_FlowerId" Association="Self.FK_WarehouseFlowers_Flowers_FlowerId">
+            <End Role="Flowers" EntitySet="Flowers" />
+            <End Role="WarehouseFlowers" EntitySet="WarehouseFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseFlowers_Warehouses_WarehouseId" Association="Self.FK_WarehouseFlowers_Warehouses_WarehouseId">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="WarehouseFlowers" EntitySet="WarehouseFlowers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FlowerbedDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Flower">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameLatin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NameLatin2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FlowerFamily" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PlantationFlowers1" Relationship="Self.FK_plantationFlowers_ToTable" FromRole="Flowers" ToRole="PlantationFlowers" />
+          <NavigationProperty Name="SupplyFlowers" Relationship="Self.FK_SupplyFlowers_Flowers_FlowerId" FromRole="Flowers" ToRole="SupplyFlowers" />
+          <NavigationProperty Name="WarehouseFlowers" Relationship="Self.FK_WarehouseFlowers_Flowers_FlowerId" FromRole="Flowers" ToRole="WarehouseFlowers" />
+        </EntityType>
+        <EntityType Name="PlantationFlower">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlowerId" Type="Int32" />
+          <Property Name="PlantationId" Type="Int32" />
+          <Property Name="Amount" Type="Int32" />
+          <NavigationProperty Name="Flower1" Relationship="Self.FK_plantationFlowers_ToTable" FromRole="PlantationFlowers" ToRole="Flowers" />
+          <NavigationProperty Name="Plantation" Relationship="Self.FK_PlantationFlowers_Plantations_PlantationId" FromRole="PlantationFlowers" ToRole="Plantations" />
+        </EntityType>
+        <EntityType Name="Plantation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PlantationFlowers" Relationship="Self.FK_PlantationFlowers_Plantations_PlantationId" FromRole="Plantations" ToRole="PlantationFlowers" />
+          <NavigationProperty Name="Supplies" Relationship="Self.FK_Supplies_Plantations_PlantationId" FromRole="Plantations" ToRole="Supplies" />
+        </EntityType>
+        <EntityType Name="Supply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClosedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PlantationId" Type="Int32" Nullable="false" />
+          <Property Name="ScheduledDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WarehouseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Plantation" Relationship="Self.FK_Supplies_Plantations_PlantationId" FromRole="Supplies" ToRole="Plantations" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK_Supplies_Warehouses_WarehouseId" FromRole="Supplies" ToRole="Warehouses" />
+          <NavigationProperty Name="SupplyFlowers" Relationship="Self.FK_SupplyFlowers_Supplies_SupplyId" FromRole="Supplies" ToRole="SupplyFlowers" />
+        </EntityType>
+        <EntityType Name="SupplyFlower">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="FlowerId" Type="Int32" Nullable="false" />
+          <Property Name="SupplyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Flower" Relationship="Self.FK_SupplyFlowers_Flowers_FlowerId" FromRole="SupplyFlowers" ToRole="Flowers" />
+          <NavigationProperty Name="Supply" Relationship="Self.FK_SupplyFlowers_Supplies_SupplyId" FromRole="SupplyFlowers" ToRole="Supplies" />
+        </EntityType>
+        <EntityType Name="WarehouseFlower">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="FlowerId" Type="Int32" Nullable="false" />
+          <Property Name="WarehouseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Flower" Relationship="Self.FK_WarehouseFlowers_Flowers_FlowerId" FromRole="WarehouseFlowers" ToRole="Flowers" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK_WarehouseFlowers_Warehouses_WarehouseId" FromRole="WarehouseFlowers" ToRole="Warehouses" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Supplies" Relationship="Self.FK_Supplies_Warehouses_WarehouseId" FromRole="Warehouses" ToRole="Supplies" />
+          <NavigationProperty Name="WarehouseFlowers" Relationship="Self.FK_WarehouseFlowers_Warehouses_WarehouseId" FromRole="Warehouses" ToRole="WarehouseFlowers" />
+        </EntityType>
+        <Association Name="FK_plantationFlowers_ToTable">
+          <End Role="Flowers" Type="Self.Flower" Multiplicity="0..1" />
+          <End Role="PlantationFlowers" Type="Self.PlantationFlower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flowers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlantationFlowers">
+              <PropertyRef Name="FlowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyFlowers_Flowers_FlowerId">
+          <End Role="Flowers" Type="Self.Flower" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SupplyFlowers" Type="Self.SupplyFlower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flowers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplyFlowers">
+              <PropertyRef Name="FlowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseFlowers_Flowers_FlowerId">
+          <End Role="Flowers" Type="Self.Flower" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WarehouseFlowers" Type="Self.WarehouseFlower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flowers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WarehouseFlowers">
+              <PropertyRef Name="FlowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlantationFlowers_Plantations_PlantationId">
+          <End Role="Plantations" Type="Self.Plantation" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlantationFlowers" Type="Self.PlantationFlower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plantations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlantationFlowers">
+              <PropertyRef Name="PlantationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplies_Plantations_PlantationId">
+          <End Role="Plantations" Type="Self.Plantation" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Supplies" Type="Self.Supply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plantations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Supplies">
+              <PropertyRef Name="PlantationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplies_Warehouses_WarehouseId">
+          <End Role="Warehouses" Type="Self.Warehouse" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Supplies" Type="Self.Supply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Supplies">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyFlowers_Supplies_SupplyId">
+          <End Role="Supplies" Type="Self.Supply" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SupplyFlowers" Type="Self.SupplyFlower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplyFlowers">
+              <PropertyRef Name="SupplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseFlowers_Warehouses_WarehouseId">
+          <End Role="Warehouses" Type="Self.Warehouse" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WarehouseFlowers" Type="Self.WarehouseFlower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WarehouseFlowers">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FlowerbedDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="Self.C__EFMigrationsHistory" />
+          <EntitySet Name="Flowers" EntityType="Self.Flower" />
+          <EntitySet Name="PlantationFlowers" EntityType="Self.PlantationFlower" />
+          <EntitySet Name="Plantations" EntityType="Self.Plantation" />
+          <EntitySet Name="Supplies" EntityType="Self.Supply" />
+          <EntitySet Name="SupplyFlowers" EntityType="Self.SupplyFlower" />
+          <EntitySet Name="WarehouseFlowers" EntityType="Self.WarehouseFlower" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouse" />
+          <AssociationSet Name="FK_plantationFlowers_ToTable" Association="Self.FK_plantationFlowers_ToTable">
+            <End Role="Flowers" EntitySet="Flowers" />
+            <End Role="PlantationFlowers" EntitySet="PlantationFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyFlowers_Flowers_FlowerId" Association="Self.FK_SupplyFlowers_Flowers_FlowerId">
+            <End Role="Flowers" EntitySet="Flowers" />
+            <End Role="SupplyFlowers" EntitySet="SupplyFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseFlowers_Flowers_FlowerId" Association="Self.FK_WarehouseFlowers_Flowers_FlowerId">
+            <End Role="Flowers" EntitySet="Flowers" />
+            <End Role="WarehouseFlowers" EntitySet="WarehouseFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlantationFlowers_Plantations_PlantationId" Association="Self.FK_PlantationFlowers_Plantations_PlantationId">
+            <End Role="Plantations" EntitySet="Plantations" />
+            <End Role="PlantationFlowers" EntitySet="PlantationFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplies_Plantations_PlantationId" Association="Self.FK_Supplies_Plantations_PlantationId">
+            <End Role="Plantations" EntitySet="Plantations" />
+            <End Role="Supplies" EntitySet="Supplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplies_Warehouses_WarehouseId" Association="Self.FK_Supplies_Warehouses_WarehouseId">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="Supplies" EntitySet="Supplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyFlowers_Supplies_SupplyId" Association="Self.FK_SupplyFlowers_Supplies_SupplyId">
+            <End Role="Supplies" EntitySet="Supplies" />
+            <End Role="SupplyFlowers" EntitySet="SupplyFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseFlowers_Warehouses_WarehouseId" Association="Self.FK_WarehouseFlowers_Warehouses_WarehouseId">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="WarehouseFlowers" EntitySet="WarehouseFlowers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FlowerbedDBModelStoreContainer" CdmEntityContainer="FlowerbedDBEntities">
+          <EntitySetMapping Name="C__EFMigrationsHistory">
+            <EntityTypeMapping TypeName="FlowerbedDBModel.C__EFMigrationsHistory">
+              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flowers">
+            <EntityTypeMapping TypeName="FlowerbedDBModel.Flower">
+              <MappingFragment StoreEntitySet="Flowers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NameLatin" ColumnName="NameLatin" />
+                <ScalarProperty Name="NameLatin2" ColumnName="NameLatin2" />
+                <ScalarProperty Name="FlowerFamily" ColumnName="FlowerFamily" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlantationFlowers">
+            <EntityTypeMapping TypeName="FlowerbedDBModel.PlantationFlower">
+              <MappingFragment StoreEntitySet="PlantationFlowers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FlowerId" ColumnName="FlowerId" />
+                <ScalarProperty Name="PlantationId" ColumnName="PlantationId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plantations">
+            <EntityTypeMapping TypeName="FlowerbedDBModel.Plantation">
+              <MappingFragment StoreEntitySet="Plantations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplies">
+            <EntityTypeMapping TypeName="FlowerbedDBModel.Supply">
+              <MappingFragment StoreEntitySet="Supplies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClosedDate" ColumnName="ClosedDate" />
+                <ScalarProperty Name="PlantationId" ColumnName="PlantationId" />
+                <ScalarProperty Name="ScheduledDate" ColumnName="ScheduledDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplyFlowers">
+            <EntityTypeMapping TypeName="FlowerbedDBModel.SupplyFlower">
+              <MappingFragment StoreEntitySet="SupplyFlowers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="FlowerId" ColumnName="FlowerId" />
+                <ScalarProperty Name="SupplyId" ColumnName="SupplyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WarehouseFlowers">
+            <EntityTypeMapping TypeName="FlowerbedDBModel.WarehouseFlower">
+              <MappingFragment StoreEntitySet="WarehouseFlowers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="FlowerId" ColumnName="FlowerId" />
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="FlowerbedDBModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

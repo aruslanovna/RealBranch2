@@ -1,0 +1,213 @@
+﻿<style>
+    button {
+        margin-top: 0.5em;
+    }
+
+    .btn, .btn-large, .btn-flat, .btn-default {
+        border: none;
+        border-radius: 2px;
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        outline: 0;
+        padding: 0 2rem;
+        text-transform: uppercase;
+        vertical-align: middle;
+        -webkit-tap-highlight-color: transparent;
+        width: -webkit-fill-available;
+    }
+
+    .btn, .btn-large {
+        text-decoration: none;
+        color: #fff;
+        background-color: #97274d;
+        text-align: center;
+        letter-spacing: .5px;
+        transition: .2s ease-out;
+        cursor: pointer
+    }
+
+        .btn:hover, .btn-large:hover {
+            background-color: #c86e8d
+        }
+
+    .but {
+        float: right;
+        margin-top: -30%;
+        display: grid;
+        margin-right: 0.4em;
+    }
+</style>
+
+<section id=" top-section" class="base nobg center" style="background-image: url('../../Resource/back2.png'); background-size: cover;
+     background-position: center;">
+    <div class="container">
+        <div class="parallax"></div>
+        <div class="p-top">
+            <div class="m-top"></div>
+            <div class="container">
+                <header>
+                    <hgroup>
+                        <h1 class="h-monster h-thin highlight">@Resources.Content.CreateEkibana</h1>
+                        <h2 class="h-small h-thin highlight m-bottom">@Resources.Content.CreateEkibana2</h2>
+                        <h2 class="h-small h-thin highlight m-bottom">@Resources.Content.Author</h2>
+                    </hgroup>
+                </header>
+                <div class="clearfix gsection group">
+                    <div class="col span_1_of_4 margin_1_of_4">
+                        <a href="#" class="btn-big btn-transparent btn-flex btn-hollow cursor-pointer nowrap">@Resources.Content.Mobile</a>
+                    </div>
+                    <div class="col span_1_of_4">
+
+                        <a href="@Url.Action("GetAllArticles", "Article" )" class="btn-big btn-transparent btn-solid btn-flex cursor-pointer">@Resources.Resources.News</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<section id="lab">
+
+    <script>
+        function refreshPage() {
+            window.location.reload();
+        }
+
+
+
+    </script>
+
+    <ul id="gallery">
+
+        <li class="column-6"> <img class="thumb" src="../../Resource/10.png" alt=""></li>
+        <li class="column-6">  <img class="thumb" src="../../Resource/00.png" alt=""></li>
+        <li class="column-6">  <img class="thumb" src="../../Resource/1014.png" alt=""></li>
+        <li class="column-6"><img class="thumb" src="../../Resource/50.png" alt=""></li>
+        <li class="column-6"><img class="thumb" src="../../Resource/14.png" alt=""></li>
+        <li class="column-6"><img class="thumb" src="../../Resource/15.png" alt=""></li>
+        <li class="column-6">  <img class="thumb" src="../../Resource/9.png" alt=""></li>
+        <li class="column-6"> <img class="thumb" src="../../Resource/2-.png" alt=""></li>
+        <li class="column-6"> <img class="thumb" src="../../Resource/20.png" alt=""></li>
+        <li class="column-6">  <img class="thumb" src="../../Resource/320.png" alt=""></li>
+        <li class="column-6">
+
+            <img class="thumb" src="../../Resource/400.png" alt="">
+
+        </li>
+        <li class="column-6">
+
+            <img class="thumb" src="../../Resource/3220.png" alt="">
+
+        </li>
+        <li class="column-6">
+
+            <img class="thumb" src="../../Resource/3.png" alt="">
+
+        </li>
+        <li class="column-6">
+
+            <img class="thumb" src="../../Resource/17.png" alt="">
+
+        </li>
+        <li class="column-6">
+
+            <img class="thumb" src="../../Resource/155.png" alt="">
+
+        </li>
+        <li class="column-6">
+
+            <img class="thumb" src="../../Resource/100.png" alt="">
+
+        </li>
+      
+    </ul>
+
+    
+
+</section>
+<div class="but">
+
+    <button type="button" id="reset" onClick="refreshPage()" class="btn ">
+
+        <span class="glyphicon glyphicon-trash" style="font-size:1em">  </span>@Resources.Content.Reset
+
+    </button>
+
+
+
+    <a href="@Url.Action("Design", "Design")" class="elements">
+        <button type="button" class="btn  btn-block ">
+
+            <span>@Resources.Content.Gallary</span>
+
+        </button>
+    </a>
+    <a href="@Url.Action("Screen", "Design" )" class="elements">
+        <button type="button" class="btn   btn-block ">
+
+            <span>@Resources.Content.Save</span>
+
+        </button>
+    </a>
+
+</div>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
+<script>
+    $(document).ready(function () {
+
+        $("#col1").on('click', function () {
+            $('#gallery li').removeClass().addClass('column-1');
+        });
+
+        $("#col2").on('click', function () {
+            $('#gallery li').removeClass().addClass('column-2');
+        });
+
+        $("#col3").on('click', function () {
+            $('#gallery li').removeClass().addClass('column-3');
+        });
+
+        $(".thumb").on('click', function () {
+            var largeImage = $(this).attr("src");
+            $(".largeImage").attr({ src: largeImage });
+        });
+
+        $(function () {
+            $(".thumb").draggable();
+            $("#gallery").disableSelection();
+        });
+
+        $(function () {
+            $("#image").resizable();
+        });
+
+        $("#reset").on('click', function () {
+            $('#image').removeAttr('style');
+        });
+    });
+  
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#lab").on("click", "a", function (event) {
+            //отменяем стандартную обработку нажатия по ссылке
+            event.preventDefault();
+
+            //забираем идентификатор бока с атрибута href
+            var id = $(this).attr('href'),
+
+                //узнаем высоту от начала страницы до блока на который ссылается якорь
+                top = $(id).offset().top;
+
+            //анимируем переход на расстояние - top за 1500 мс
+            $('body,html').animate({ scrollTop: top }, 1500);
+        });
+    });
+
+</script>
+

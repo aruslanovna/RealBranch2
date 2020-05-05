@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="79af2c3733b049aca491c4934b1bb37d" Name="Diagram1" ZoomLevel="61">
+        <EntityTypeShape EntityType="ComeTogetherDBModel.C__EFMigrationsHistory" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Article" Width="1.5" PointX="9.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.AspNetUser" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Category" Width="1.5" PointX="9.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Comment" Width="1.5" PointX="9.5" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Deal" Width="1.5" PointX="6.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Follower" Width="1.5" PointX="0.625" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Following" Width="1.5" PointX="0.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Project" Width="1.5" PointX="6.375" PointY="11.875" IsExpanded="true" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Articles_Categories_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Comments_Articles_ArticleId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Deals_Partners_Partner" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Followers_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Followings_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Projects_Categories_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Deals_Projects_ProjectId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

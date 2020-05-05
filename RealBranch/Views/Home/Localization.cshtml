@@ -1,0 +1,72 @@
+﻿
+
+
+
+
+@using Microsoft.AspNet.Identity
+
+
+
+<li>
+    <a href="@Url.Action("Index", "Home")" style=" color:#730101; font-size:1.4em;">
+        <span> @Resources.Resources.Home</span>
+    </a>
+</li>
+<li>
+    <a href="@Url.Action("AnotherUserProfile", "Account")" style=" color:#730101; font-size:1.4em;">
+        <span>@Resources.Resources.People</span>
+    </a>
+</li>
+@if (User.Identity.IsAuthenticated)
+{
+
+    <li>
+        <a href="@Url.Action("GetAllArticles", "Article")" style=" color:#730101; font-size:1.4em;">
+            <span>@Resources.Resources.News</span>
+        </a>
+    </li>
+   
+    <li>
+        <a href="@Url.Action("Ekibana", "Design")" style=" color:#730101; font-size:1.4em;">
+            <span>@Resources.Resources.Ekibana</span>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("UserProfile", "Account")" style=" color:#730101; font-size:1.4em;">
+            <span>@Resources.Resources.Account</span>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Logout", "Account")" style=" color:#730101; font-size:1.4em;">
+            <span>@Resources.Resources.LogOut</span>
+        </a>
+    </li>
+}
+
+else
+{
+    <li>
+        <a href="@Url.Action("Login", "Account")" style=" color:#730101; font-size:1.4em;">
+            <span>@Resources.Resources.Login</span>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("GetAllArticles", "Article")" style=" color:#730101; font-size:1.4em;">
+            <span>@Resources.Resources.News</span>
+        </a>
+    </li>
+}
+@if (User.IsInRole("Admin"))
+{
+    <li>
+        <a href="@Url.Action("Index", "Admin")" style=" color:#730101; font-size:1.4em;">
+            <span>@Resources.Resources.Admin</span>
+        </a>
+    </li>
+}  <li>
+    <a href="@Url.Action("Settings", "Base")" style=" color:#730101; font-size:1.4em;">
+        <span>@Resources.Resources.Settings</span>
+    </a>
+</li>
+
+

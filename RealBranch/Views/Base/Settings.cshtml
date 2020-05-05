@@ -1,0 +1,161 @@
+﻿@{
+
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+@helper selected(string c, string culture)
+{
+    if (c == culture)
+    {
+        @:checked="checked"
+    }
+}
+
+
+<style>
+
+
+
+    body {
+       
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 1.6em;
+        font-weight: 300;
+        color: #555;
+    }
+
+    p {
+        margin-bottom: 2em;
+    }
+
+    .header {
+        border-bottom: solid 1px #e0e0e0;
+        margin: 5em 0 20px 0;
+    }
+
+    .pageTitle,
+    .pageSubTitle {
+        font-family: 'Titillium', sans-serif;
+        text-transform: uppercase;
+        color: #333;
+    }
+
+    .pageTitle {
+        color: #FF7600;
+    }
+
+    .pageTitle {
+        font-size: 2em;
+        font-weight: 700;
+        line-height: 2em;
+    }
+
+    .pageSubTitle {
+        margin-bottom: 1em;
+        font-size: 1.4em;
+        font-weight: 300;
+    }
+
+    .background {
+        background: url("http://img.talkandroid.com/uploads/2013/03/htc-sense-5-wallpaper-3.jpg") repeat;
+        background-size: 100% auto;
+        position: fixed;
+        width: 100%;
+        height: 300%;
+        top: 0;
+        left: 0;
+        z-index: -1
+    }
+
+    .wrapper {
+        width: 520px;
+        padding: 40px;
+        margin: 20px auto;
+        background: #fff;
+        box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .slogan {
+        position: fixed;
+        display: block;
+        top: 700px;
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+        background: #222;
+    }
+
+    .sloganTitle {
+        font-size: 70px;
+        font-weight: 700;
+        line-height: 80px;
+        color: #fff;
+        text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .button {
+        background-color: #8cb375;
+        color: aliceblue;
+        margin-right: 2em;
+    }
+
+        .button:hover {
+            background-color: #80b06a;
+            color: aliceblue
+        }
+</style>
+
+<article class="wrapper">
+
+    <div class="header">
+        @using (Html.BeginForm("SetCulture", "Base"))
+        {
+
+            <fieldset>
+                <legend>@Resources.Resources.ChooseYourLanguage</legend>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="en-us">
+                            <input name="culture" id="en-us" value="en-us" type="radio" @selected("en-us", culture) /> English
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="uk-UA">
+                            <input name="culture" id="uk-UA" value="uk-UA" type="radio" @selected("uk-UA", culture) /> Українська
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <label for="ar">
+                            <input name="culture" id="ar" value="ar" type="radio" @selected("ar", culture) /> العربية
+                        </label>
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+
+        }
+    </div>
+</article>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        (function ($) {
+            $("input[type = 'radio']").click(function () {
+                $(this).parents("form").submit(); // post form
+            });
+
+        })(jQuery);
+    </script>
+}

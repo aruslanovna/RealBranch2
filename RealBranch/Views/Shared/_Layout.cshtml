@@ -1,0 +1,168 @@
+﻿
+@{
+
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+<!DOCTYPE html>
+<html lang="@RealBranch.Infrastructure.CultureHelper.GetCurrentNeutralCulture()" dir="@(RealBranch.Infrastructure.CultureHelper.IsRighToLeft() ? "rtl" : "ltr")">
+<head>
+
+
+
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.rawgit.com/filipelinhares/ress/master/dist/ress.min.css'>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js"></script>
+
+    <meta charset="UTF-8">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.js"></script>
+    @Styles.Render("~/Content/Site.css")
+
+</head>
+<body>
+
+
+
+
+    <div class=" navbar-inverse navbar-fixed-top ">
+        <header class="top-header complement">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="background-color:#730101">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="~/Resource/output-onlinepngtools.png" width="70em" />
+
+            </div>
+            <div class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav">
+
+                    @Html.Partial("~/Views/Home/Localization.cshtml")
+
+
+                </ul>
+            </div>
+
+        </header>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    @*<div class=" navbar-inverse navbar-fixed-top">
+            <div class="transitions">
+                <header class="top-header complement">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                            <img src="~/Resource/output-onlinepngtools.png" width="70em" />
+
+                        </div>
+                        <div class="navbar-collapse collapse">
+
+                            <ul class="head">
+
+                                <li>
+                                    <a href="@Url.Action("Index", "Home")" class="elements">
+                                        <span>Home</span>
+                                    </a>
+                                </li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+
+                                    <li>
+                                        <a href="@Url.Action("GetAllArticles", "Article")" class="elements">
+                                            <span>News</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("AnotherUserProfile", "Account")" class="elements">
+                                            <span>People</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="@Url.Action("Ekibana", "Design")" class="elements">
+                                            <span>Create ekibana</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("UserProfile", "Account")" class="elements">
+                                            <span>@RealBranch.Resource.Localization.Account</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Logout", "Account")" class="elements">
+                                            <span>Logout</span>
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Login", "Account")" class="elements">
+                                            <span>Login</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("AllNews", "News")" class="elements">
+                                            <span>News</span>
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </header>
+            </div>
+
+        </div>*@
+
+
+    @RenderBody()
+    
+
+            @Html.Partial("~/Views/Home/Footer.cshtml")
+
+
+     
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/bootstrap" + (RealBranch.Infrastructure.CultureHelper.IsRighToLeft() ? "-rtl" : ""))
+    @RenderSection("scripts", required: false)
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+</body>
+</html>

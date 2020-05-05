@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f1d7905eadee4eb8af67d74217f292c9" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="BranchDBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.Articles" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.AspNetRoles" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.AspNetUserClaims" Width="1.5" PointX="9.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.AspNetUserLogins" Width="1.5" PointX="9.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.AspNetUsers" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.Comments" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.Directories" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.News" Width="1.5" PointX="3.125" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.Notes" Width="1.5" PointX="9.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.Plants" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.SelectedNews" Width="1.5" PointX="5.125" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.Species" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BranchDBModel.Topics" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="BranchDBModel.FK_dbo_Articles_dbo_Topics_TopicId" ManuallyRouted="false" />
+        <AssociationConnector Association="BranchDBModel.FK_dbo_Comments_dbo_Articles_ArticleId" ManuallyRouted="false" />
+        <AssociationConnector Association="BranchDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="BranchDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="BranchDBModel.FK_AspNetUsers_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="BranchDBModel.FK_AspNetUsers_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="BranchDBModel.FK_Notes_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="BranchDBModel.FK_dbo_Directories_dbo_Plants_PlantId" ManuallyRouted="false" />
+        <AssociationConnector Association="BranchDBModel.FK_dbo_News_dbo_Topics_TopicId" ManuallyRouted="false" />
+        <AssociationConnector Association="BranchDBModel.FK_dbo_Plants_dbo_Species_SpeciestId" ManuallyRouted="false" />
+        <AssociationConnector Association="BranchDBModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="BranchDBModel.FK_Comments_ToTable" />
+        <AssociationConnector Association="BranchDBModel.FK_Articles_ToTable" />
+        <EntityTypeShape EntityType="BranchDBModel.Subscriptions" Width="1.5" PointX="10.625" PointY="0.875" />
+        <EntityTypeShape EntityType="BranchDBModel.Followers" Width="1.5" PointX="9.75" PointY="16.25" />
+        <EntityTypeShape EntityType="BranchDBModel.Followings" Width="1.5" PointX="9.75" PointY="13.875" />
+        <AssociationConnector Association="BranchDBModel.FK_Followers_ToTable" />
+        <AssociationConnector Association="BranchDBModel.FK_Followings_ToTable" />
+        <AssociationConnector Association="BranchDBModel.FK_dbo_SelectedNews_dbo_Articles_ArticleId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
