@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4d24e69979164c1db016b15aa466dcc9" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="ComeTogetherDBModel.C__EFMigrationsHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.AspNetUser" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Category" Width="1.5" PointX="5.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Deal" Width="1.5" PointX="9.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.DeviceCode" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Founder" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Partner" Width="1.5" PointX="6.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.PartnerTerritory" Width="1.5" PointX="7.875" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.PersistedGrant" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Poll" Width="1.5" PointX="12.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.PollOption" Width="1.5" PointX="15" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.ProjectDetail" Width="1.5" PointX="9.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Project" Width="1.5" PointX="7.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Region" Width="1.5" PointX="5.875" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComeTogetherDBModel.Territory" Width="1.5" PointX="8" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Founders_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Partners_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Projects_Categories_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Deals_Partners_PartnerId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Deals_Projects_ProjectId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Projects_Founders_FounderId1" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Partners_Projects_ProjectId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_PartnerTerritories_Partners_PartnerId1" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_PartnerTerritories_Territories_TerritoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_PollOption_PollOption" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_ProjectDetails_Projects_ProjectId1" ManuallyRouted="false" />
+        <AssociationConnector Association="ComeTogetherDBModel.FK_Territories_Region_RegionId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

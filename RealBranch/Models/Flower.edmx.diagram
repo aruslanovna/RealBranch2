@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="88e301acad2d4bab8ddccbbeab167959" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="FlowerbedDBModel.C__EFMigrationsHistory" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlowerbedDBModel.Flower" Width="1.5" PointX="3.375" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlowerbedDBModel.PlantationFlower" Width="1.5" PointX="5.625" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlowerbedDBModel.Plantation" Width="1.5" PointX="8" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlowerbedDBModel.Supply" Width="1.5" PointX="8" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlowerbedDBModel.SupplyFlower" Width="1.5" PointX="5.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlowerbedDBModel.WarehouseFlower" Width="1.5" PointX="5.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlowerbedDBModel.Warehouse" Width="1.5" PointX="8" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="FlowerbedDBModel.FK_plantationFlowers_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="FlowerbedDBModel.FK_SupplyFlowers_Flowers_FlowerId" ManuallyRouted="false" />
+        <AssociationConnector Association="FlowerbedDBModel.FK_WarehouseFlowers_Flowers_FlowerId" ManuallyRouted="false" />
+        <AssociationConnector Association="FlowerbedDBModel.FK_PlantationFlowers_Plantations_PlantationId" ManuallyRouted="false" />
+        <AssociationConnector Association="FlowerbedDBModel.FK_Supplies_Plantations_PlantationId" ManuallyRouted="false" />
+        <AssociationConnector Association="FlowerbedDBModel.FK_Supplies_Warehouses_WarehouseId" ManuallyRouted="false" />
+        <AssociationConnector Association="FlowerbedDBModel.FK_SupplyFlowers_Supplies_SupplyId" ManuallyRouted="false" />
+        <AssociationConnector Association="FlowerbedDBModel.FK_WarehouseFlowers_Warehouses_WarehouseId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

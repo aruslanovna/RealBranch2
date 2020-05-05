@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Azure.Storage.Blobs;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Model;
 using Model.LINQmodels;
@@ -34,27 +35,51 @@ namespace RealBranch.Controllers
 
         [HttpPost]
 
-        public ActionResult Create(Article model)
+        public async Task<ActionResult> Create(Article model)
         {
             AppUser user = CurrentUser;
             Article c = new Article();
-          
-          
+
+
             if (ModelState.IsValid)
             {
-               
+
                 HttpPostedFileBase file = Request.Files["ImageData"];
                 if (file.InputStream != null)
                 {
 
                     byte[] imageBytes = null;
-                    BinaryReader reader = new BinaryReader(file.InputStream);
-                    imageBytes = reader.ReadBytes((int)file.ContentLength);
-
+                    var reader = file.InputStream;
 
                     c.Photo = imageBytes;
+
+                    string connectionString = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING");
+                   
+                    BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+
+                    //Create a unique name for the container
+                    string containerName = "quickstartblobs" + Guid.NewGuid().ToString();
+
+                    // Create the container and return a container client object
+                    BlobContainerClient containerClient = await blobServiceClient.CreateBlobContainerAsync(containerName);
+                    // Create a local file in the ./data/ directory for uploading and downloading
+                    string localPath = "./data/";
+                    string fileName = "quickstart" + Guid.NewGuid().ToString() + ".jpg";
+                    string localFilePath = Path.Combine(localPath, fileName);
+
+                    containerClient.UploadBlob(localFilePath, reader);
+                    // Get a reference to a blob
+                    BlobClient blobClient = containerClient.GetBlobClient(fileName);
+
+              
+
+                    // Open the file and upload its data
+                  //  FileStream uploadFileStream = System.IO.File.OpenRead(localFilePath);
+                   // await blobClient.UploadAsync(uploadFileStream, true);
+                  //  uploadFileStream.Close();
+
                 }
-               
+
                 c.UserId = user.Id;
                 c.Name = model.Name;
                 if (String.IsNullOrEmpty(c.Name))
@@ -150,7 +175,7 @@ namespace RealBranch.Controllers
         public ActionResult Subscription()
         {
             AppUser user = CurrentUser;
-          
+
 
 
             // IEnumerable<Article> articles = db.Articles.Where(x => x.ArticleId in db.SelectedNews.Where(y=>y.UserId==user.Id).Select(y=>y.ArticleId).FirstOrDefault()).ToList();
@@ -225,7 +250,7 @@ namespace RealBranch.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> Edit(string name, string briefly, string description,int id)
+        public async Task<ActionResult> Edit(string name, string briefly, string description, int id)
         {
 
             AppUser user = CurrentUser;
@@ -237,9 +262,9 @@ namespace RealBranch.Controllers
                 article.Briefly = briefly;
                 article.Name = name;
                 article.Description = description;
-               
 
-              
+
+
 
                 HttpPostedFileBase file = Request.Files["ImageData"];
                 if (file != null)
@@ -276,7 +301,10 @@ namespace RealBranch.Controllers
             {
                 ModelState.AddModelError("", "We can't find user");
             }
-            return RedirectToAction("GetArticle", new {id = id});
+
+
+
+            return RedirectToAction("GetArticle", new { id = id });
 
         }
 
